@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SBXY OLS/OES - Avaliacao do Silo</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIINfQd6w7fscYRYGUNWf+roGwbvv1Xr8HY=" crossorigin="" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cesium@1.111.0/Build/Cesium/Widgets/widgets.css" />
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --ink: #17202a;
+      --muted: #5c6b7a;
+      --line: #d9e1ea;
+      --red: #d9413c;
+      --green: #208b57;
+      --amber: #a76600;
+      --blue: #2457a6;
+      --cyan: #078597;
+      --magenta: #9a3fa4;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+
+    .app {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(340px, 420px) 1fr;
+    }
+
+    aside {
+      background: var(--panel);
+      border-right: 1px solid var(--line);
+      overflow: auto;
+      padding: 18px;
+    }
+
+    main {
+      min-width: 0;
+      display: grid;
+      grid-template-rows: 1fr auto;
+    }
+
+    .viewer {
+      width: 100%;
+      min-height: 68vh;
+    }
+
+    #cesiumContainer {
+      display: none;
+      background: #dce7f2;
+    }
+
+    .toolbar {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 800;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .toolbar button {
+      border: 1px solid #b9c6d3;
+      background: #ffffff;
+      color: var(--ink);
+      border-radius: 8px;
+      min-height: 36px;
+      padding: 7px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 12px #0000001a;
+    }
+
+    .toolbar button.active {
+      border-color: var(--blue);
+      background: #e9f1ff;
+      color: var(--blue);
+    }
+
+    .map-stage {
+      position: relative;
+      min-width: 0;
+    }
+
+    .map-error {
+      display: none;
+      position: absolute;
+      inset: 0;
+      z-index: 700;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: #f8fafc;
+      color: var(--muted);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    h1 {
+      font-size: 20px;
+      line-height: 1.2;
+      margin: 0 0 4px;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 14px;
+      margin: 20px 0 8px;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 6px 0;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 13px;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      background: #fbfcfe;
+      min-height: 70px;
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      margin-bottom: 5px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 18px;
+      line-height: 1.15;
+    }
+
+    .metric.danger strong { color: var(--red); }
+    .metric.warn strong { color: var(--amber); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      background: var(--panel);
+    }
+
+    th, td {
+      text-align: left;
+      padding: 8px 7px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      font-weight: 650;
+      background: #f1f5f9;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    .table-wrap {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: auto;
+      max-height: 300px;
+      background: var(--panel);
+    }
+
+    .map-footer {
+      border-top: 1px solid var(--line);
+      background: var(--panel);
+      padding: 10px 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      align-items: center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .legend {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      border: 1px solid #0002;
+    }
+
+    .leaflet-popup-content {
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .leaflet-control-layers {
+      font-size: 12px;
+    }
+
+    .links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--blue);
+      background: #fbfcfe;
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    @media (max-width: 900px) {
+      .app { grid-template-columns: 1fr; }
+      aside { border-right: 0; border-bottom: 1px solid var(--line); max-height: none; }
+      .viewer { min-height: 62vh; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside>
+      <h1>SBXY OLS/OES</h1>
+      <p>Avaliacao do silo de graos de 38 m junto a pista 03/21, instrumento nao-precisao, codigo 4.</p>
+
+      <div class="meta">
+        <div class="metric">
+          <span>Topo do silo</span>
+          <strong>851 m MSL</strong>
+        </div>
+        <div class="metric">
+          <span>Terreno local</span>
+          <strong>813 m MSL</strong>
+        </div>
+        <div class="metric danger">
+          <span>Maior penetracao</span>
+          <strong>68,9 m</strong>
+        </div>
+        <div class="metric warn">
+          <span>OES 90 m</span>
+          <strong>+1,0 m</strong>
+        </div>
+      </div>
+
+      <h2>Infringimentos</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Superficie</th><th>Limite</th><th>Penetracao</th></tr>
+          </thead>
+          <tbody id="resultsBody"></tbody>
+        </table>
+      </div>
+
+      <h2>Dados Relativos</h2>
+      <div class="table-wrap">
+        <table>
+          <tbody>
+            <tr><td>Latitude / Longitude</td><td>-17.069903, -51.098031</td></tr>
+            <tr><td>Longitudinal ao centro</td><td>-2 504,3 m</td></tr>
+            <tr><td>Transversal ao eixo</td><td>155,2 m</td></tr>
+            <tr><td>Distancia CAB 03 fisica</td><td>1 313,5 m</td></tr>
+            <tr><td>Distancia CAB 21 fisica</td><td>3 707,6 m</td></tr>
+            <tr><td>Elevacao de referencia</td><td>760 m MSL</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Arquivos</h2>
+      <p>Suba este `index.html` junto com os arquivos abaixo no repositorio para manter downloads diretos no site.</p>
+      <div class="links">
+        <a href="./Teste%202%20IT-200%20COMPLETO.kml">KML 3D</a>
+        <a href="./vertices_OLS_OES_3D.tsv">Vertices TSV</a>
+        <a href="./resumo_OLS_OES_3D.md">Resumo</a>
+      </div>
+
+      <h2>Vertices</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Superficie</th><th>Vertice</th><th>Lat</th><th>Lon</th><th>Alt</th></tr>
+          </thead>
+          <tbody id="verticesBody"></tbody>
+        </table>
+      </div>
+    </aside>
+
+    <main>
+      <div class="map-stage">
+        <div class="toolbar">
+          <button id="view2dBtn" class="active" type="button">2D</button>
+          <button id="view3dBtn" type="button">3D</button>
+        </div>
+        <div id="map" class="viewer"></div>
+        <div id="cesiumContainer" class="viewer"></div>
+        <div id="mapError" class="map-error">Nao foi possivel carregar o mapa. Confira a conexao com a internet e recarregue a pagina.</div>
+      </div>
+      <div class="map-footer">
+        <span class="legend"><span class="swatch" style="background:#d9413c"></span>Aproximacao</span>
+        <span class="legend"><span class="swatch" style="background:#208b57"></span>Decolagem</span>
+        <span class="legend"><span class="swatch" style="background:#078597"></span>Transicao</span>
+        <span class="legend"><span class="swatch" style="background:#9a3fa4"></span>Horizontais/OES</span>
+        <span class="legend"><span class="swatch" style="background:#a76600"></span>Conica</span>
+        <span>Altitudes dos popups em MSL; KML correspondente usa altitude absoluta.</span>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script>if (!window.L) document.write('<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"><\\/script>');</script>
+  <script>window.CESIUM_BASE_URL = "https://cdn.jsdelivr.net/npm/cesium@1.111.0/Build/Cesium/";</script>
+  <script src="https://cdn.jsdelivr.net/npm/cesium@1.111.0/Build/Cesium/Cesium.js"></script>
+  <script>
+    const runway = [
+      [-17.06039403, -51.09063861],
+      [-17.04160580, -51.07936195]
+    ];
+
+    const silo = {
+      lat: -17.069903,
+      lon: -51.098031,
+      terrain: 813,
+      top: 851
+    };
+
+    const results = [
+      { surface: "OLS subida decolagem RWY21", limit: "782,1 m MSL", penetration: "68,9 m", infringed: true },
+      { surface: "OLS aproximacao RWY03", limit: "790,9 m MSL", penetration: "60,1 m", infringed: true },
+      { surface: "Horizontal interna", limit: "805,0 m MSL", penetration: "46,0 m", infringed: true },
+      { surface: "OES horizontal 90 m", limit: "850,0 m MSL", penetration: "1,0 m", infringed: true },
+      { surface: "Aproximacao RWY21", limit: "N/A", penetration: "0,0 m", infringed: false },
+      { surface: "Decolagem RWY03", limit: "N/A", penetration: "0,0 m", infringed: false },
+      { surface: "Conica", limit: "N/A", penetration: "0,0 m", infringed: false }
+    ];
+
+    const surfaces = [
+      {
+        name: "OLS aproximacao RWY03 3D",
+        type: "Aproximacao",
+        color: "#d9413c",
+        fillOpacity: 0.24,
+        rule: "760 + distancia x 0,02",
+        ref: "CAB 03 deslocada",
+        vertices: [
+          [-17.05919312, -51.08828359, 760.0],
+          [-17.05783847, -51.09072371, 760.0],
+          [-17.07929336, -51.10845779, 820.0],
+          [-17.08471197, -51.09869731, 820.0]
+        ]
+      },
+      {
+        name: "OLS aproximacao RWY21 3D",
+        type: "Aproximacao",
+        color: "#d9413c",
+        fillOpacity: 0.16,
+        rule: "760 + distancia x 0,02",
+        ref: "CAB 21",
+        vertices: [
+          [-17.04181284, -51.07786890, 760.0],
+          [-17.04045819, -51.08030902, 760.0],
+          [-17.01493934, -51.06989530, 820.0],
+          [-17.02035795, -51.06013482, 820.0]
+        ]
+      },
+      {
+        name: "OLS subida decolagem RWY21 3D",
+        type: "Decolagem",
+        color: "#208b57",
+        fillOpacity: 0.22,
+        rule: "760 + distancia x 0,02",
+        ref: "Fim da clearway RWY21",
+        vertices: [
+          [-17.06236693, -51.09083578, 760.0],
+          [-17.06155414, -51.09229986, 760.0],
+          [-17.10862821, -51.12928780, 889.6],
+          [-17.17533092, -51.16925768, 1060.0],
+          [-17.18345884, -51.15461696, 1060.0],
+          [-17.11675614, -51.11464708, 889.6]
+        ]
+      },
+      {
+        name: "OLS subida decolagem RWY03 3D",
+        type: "Decolagem",
+        color: "#208b57",
+        fillOpacity: 0.16,
+        rule: "760 + distancia x 0,02",
+        ref: "CAB 21 + 60 m",
+        vertices: [
+          [-17.04154191, -51.07835693, 760.0],
+          [-17.04072912, -51.07982100, 760.0],
+          [-16.98633992, -51.05600970, 889.6],
+          [-16.91963721, -51.01603982, 1060.0],
+          [-16.92776513, -51.00139910, 1060.0],
+          [-16.99446784, -51.04136898, 889.6]
+        ]
+      },
+      {
+        name: "Transicao lateral esquerda",
+        type: "Transicao",
+        color: "#078597",
+        fillOpacity: 0.22,
+        rule: "1:7 ate 805 m MSL",
+        ref: "Faixa de pista",
+        vertices: [
+          [-17.04050334, -51.08022768, 760.0],
+          [-17.06023231, -51.09204976, 760.0],
+          [-17.06307602, -51.09461216, 805.0],
+          [-17.03765963, -51.07766528, 805.0]
+        ]
+      },
+      {
+        name: "Transicao lateral direita",
+        type: "Transicao",
+        color: "#078597",
+        fillOpacity: 0.22,
+        rule: "1:7 ate 805 m MSL",
+        ref: "Faixa de pista",
+        vertices: [
+          [-17.06149666, -51.08977232, 760.0],
+          [-17.04176769, -51.07795024, 760.0],
+          [-17.03892398, -51.07538784, 805.0],
+          [-17.06434037, -51.09233472, 805.0]
+        ]
+      }
+    ];
+
+    const horizontalInternal = [
+      [-17.01968417,-51.06623480,805.0],[-17.01822913,-51.06914181,805.0],[-17.01702349,-51.07216952,805.0],[-17.01607643,-51.07529487,805.0],[-17.01539516,-51.07849408,805.0],[-17.01498487,-51.08174281,805.0],[-17.01484867,-51.08501633,805.0],[-17.01498761,-51.08828972,805.0],[-17.01540062,-51.09153808,805.0],[-17.01608457,-51.09473667,805.0],[-17.01703424,-51.09786117,805.0],[-17.01824241,-51.10088778,805.0],[-17.01969989,-51.10379348,805.0],[-17.02139558,-51.10655615,805.0],[-17.02331658,-51.10915476,805.0],[-17.02544827,-51.11156954,805.0],[-17.02777442,-51.11378212,805.0],[-17.03027733,-51.11577564,805.0],[-17.03293795,-51.11753494,805.0],[-17.03573603,-51.11904663,805.0],[-17.03865029,-51.12029920,805.0],[-17.04165853,-51.12128313,805.0],[-17.04473787,-51.12199092,805.0],[-17.04786486,-51.12241718,805.0],[-17.05101572,-51.12255868,805.0],[-17.05416645,-51.12241434,805.0],[-17.05729309,-51.12198525,805.0],[-17.06037183,-51.12127467,805.0],[-17.06337925,-51.12028803,805.0],[-17.06629245,-51.11903283,805.0],[-17.06908927,-51.11751861,805.0],[-17.07174842,-51.11575691,805.0],[-17.07424966,-51.11376112,805.0],[-17.07657396,-51.11154645,805.0],[-17.07870363,-51.10912975,805.0],[-17.08062245,-51.10652940,805.0],[-17.08231583,-51.10376520,805.0],[-17.08377087,-51.10085819,805.0],[-17.08497651,-51.09783048,805.0],[-17.08592357,-51.09470513,805.0],[-17.08660484,-51.09150592,805.0],[-17.08701513,-51.08825719,805.0],[-17.08715133,-51.08498367,805.0],[-17.08701239,-51.08171028,805.0],[-17.08659938,-51.07846192,805.0],[-17.08591543,-51.07526333,805.0],[-17.08496576,-51.07213883,805.0],[-17.08375759,-51.06911222,805.0],[-17.08230011,-51.06620652,805.0],[-17.08060442,-51.06344385,805.0],[-17.07868342,-51.06084524,805.0],[-17.07655173,-51.05843046,805.0],[-17.07422558,-51.05621788,805.0],[-17.07172267,-51.05422436,805.0],[-17.06906205,-51.05246506,805.0],[-17.06626397,-51.05095337,805.0],[-17.06334971,-51.04970080,805.0],[-17.06034147,-51.04871687,805.0],[-17.05726213,-51.04800908,805.0],[-17.05413514,-51.04758282,805.0],[-17.05098428,-51.04744132,805.0],[-17.04783355,-51.04758566,805.0],[-17.04470691,-51.04801475,805.0],[-17.04162817,-51.04872533,805.0],[-17.03862075,-51.04971197,805.0],[-17.03570755,-51.05096717,805.0],[-17.03291073,-51.05248139,805.0],[-17.03025158,-51.05424309,805.0],[-17.02775034,-51.05623888,805.0],[-17.02542604,-51.05845355,805.0],[-17.02329637,-51.06087025,805.0],[-17.02137755,-51.06347060,805.0]
+    ];
+
+    const map = L.map("map", { zoomControl: true }).setView([-17.070, -51.098], 12);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: "&copy; OpenStreetMap contributors"
+    }).addTo(map);
+
+    const baseGroup = L.layerGroup().addTo(map);
+    const approachGroup = L.layerGroup().addTo(map);
+    const takeoffGroup = L.layerGroup().addTo(map);
+    const transitionGroup = L.layerGroup().addTo(map);
+    const constantGroup = L.layerGroup().addTo(map);
+
+    L.polyline(runway, { color: "#17202a", weight: 5 }).bindPopup("<strong>Eixo pista 03/21</strong><br>Comprimento: 2 400 m").addTo(baseGroup);
+    L.circleMarker([-17.051, -51.085], { radius: 5, color: "#2457a6", fillColor: "#2457a6", fillOpacity: 1 }).bindPopup("Centro da pista<br>Elevacao: 760 m MSL").addTo(baseGroup);
+    L.marker([silo.lat, silo.lon]).bindPopup(`<strong>Silo de graos</strong><br>Terreno: ${silo.terrain} m MSL<br>Topo: ${silo.top} m MSL<br>Maior penetracao: 68,9 m`).addTo(baseGroup);
+
+    const groupsByType = {
+      Aproximacao: approachGroup,
+      Decolagem: takeoffGroup,
+      Transicao: transitionGroup
+    };
+
+    for (const surface of surfaces) {
+      const polygon = L.polygon(surface.vertices.map(v => [v[0], v[1]]), {
+        color: surface.color,
+        fillColor: surface.color,
+        fillOpacity: surface.fillOpacity,
+        weight: 2
+      });
+      polygon.bindPopup(surfacePopup(surface));
+      polygon.addTo(groupsByType[surface.type]);
+    }
+
+    const horizontalLayer = L.polygon(horizontalInternal.map(v => [v[0], v[1]]), {
+      color: "#9a3fa4",
+      fillColor: "#9a3fa4",
+      fillOpacity: 0.10,
+      weight: 2
+    }).bindPopup("<strong>OLS horizontal interna</strong><br>Altitude constante: 805 m MSL<br>Penetracao do silo: 46,0 m").addTo(constantGroup);
+
+    const oesLayer = L.polygon(horizontalInternal.map(v => [v[0], v[1]]), {
+      color: "#2457a6",
+      fillColor: "#2457a6",
+      fillOpacity: 0.07,
+      dashArray: "6 6",
+      weight: 2
+    }).bindPopup("<strong>OES horizontal 90 m</strong><br>Elevacao ref.: 760 m MSL<br>Altitude: 850 m MSL<br>Topo silo: 851 m MSL<br>Penetracao: 1,0 m").addTo(constantGroup);
+
+    L.control.layers(null, {
+      "Pista e silo": baseGroup,
+      "Aproximacoes": approachGroup,
+      "Decolagens": takeoffGroup,
+      "Transicoes": transitionGroup,
+      "Horizontais / OES": constantGroup
+    }, { collapsed: false }).addTo(map);
+
+    const allBounds = L.latLngBounds([]);
+    runway.forEach(p => allBounds.extend(p));
+    allBounds.extend([silo.lat, silo.lon]);
+    surfaces.forEach(s => s.vertices.forEach(v => allBounds.extend([v[0], v[1]])));
+    map.fitBounds(allBounds.pad(0.08));
+
+    let cesiumViewer = null;
+
+    function initCesium3d() {
+      if (cesiumViewer) return true;
+      if (!window.Cesium) {
+        showMapError("A biblioteca 3D nao carregou. Confira a conexao e recarregue a pagina.");
+        return false;
+      }
+
+      try {
+        cesiumViewer = new Cesium.Viewer("cesiumContainer", {
+          animation: false,
+          timeline: false,
+          geocoder: false,
+          homeButton: true,
+          sceneModePicker: false,
+          baseLayerPicker: false,
+          navigationHelpButton: false,
+          fullscreenButton: true,
+          infoBox: true,
+          selectionIndicator: true,
+          terrainProvider: new Cesium.EllipsoidTerrainProvider(),
+          imageryProvider: new Cesium.OpenStreetMapImageryProvider({
+            url: "https://tile.openstreetmap.org/"
+          })
+        });
+
+        cesiumViewer.scene.globe.depthTestAgainstTerrain = false;
+        cesiumViewer.scene.globe.enableLighting = false;
+
+        addCesiumPolyline("Eixo pista 03/21", runway.map(p => [p[0], p[1], 760]), "#17202a", 5);
+        addCesiumPolyline("Silo 813-851 m MSL", [[silo.lat, silo.lon, silo.terrain], [silo.lat, silo.lon, silo.top]], "#d9413c", 6);
+
+        for (const surface of surfaces) {
+          addCesiumPolygon(surface);
+        }
+
+        addCesiumPolygon({
+          name: "OLS horizontal interna 805 m MSL",
+          color: "#9a3fa4",
+          fillOpacity: 0.18,
+          rule: "760 + 45 = 805 m MSL",
+          ref: "Aerodromo",
+          vertices: horizontalInternal.map(v => [v[0], v[1], 805])
+        });
+
+        addCesiumPolygon({
+          name: "OES horizontal 90 m - 850 m MSL",
+          color: "#2457a6",
+          fillOpacity: 0.14,
+          rule: "760 + 90 = 850 m MSL",
+          ref: "Aerodromo",
+          vertices: horizontalInternal.map(v => [v[0], v[1], 850])
+        });
+
+        cesiumViewer.entities.add({
+          name: "Silo de graos",
+          position: Cesium.Cartesian3.fromDegrees(silo.lon, silo.lat, silo.top),
+          point: {
+            pixelSize: 12,
+            color: Cesium.Color.RED,
+            outlineColor: Cesium.Color.WHITE,
+            outlineWidth: 2,
+            heightReference: Cesium.HeightReference.NONE
+          },
+          label: {
+            text: "Silo 851 m MSL",
+            font: "14px sans-serif",
+            fillColor: Cesium.Color.WHITE,
+            outlineColor: Cesium.Color.BLACK,
+            outlineWidth: 3,
+            style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+            pixelOffset: new Cesium.Cartesian2(0, -22)
+          },
+          description: "Terreno: 813 m MSL<br>Topo: 851 m MSL<br>Penetracao maxima: 68,9 m"
+        });
+
+        cesiumViewer.camera.flyTo({
+          destination: Cesium.Cartesian3.fromDegrees(-51.100, -17.070, 9000),
+          orientation: {
+            heading: Cesium.Math.toRadians(30),
+            pitch: Cesium.Math.toRadians(-58),
+            roll: 0
+          },
+          duration: 0
+        });
+
+        return true;
+      } catch (error) {
+        console.error(error);
+        showMapError("Nao foi possivel iniciar o modo 3D. Confira se o navegador permite WebGL.");
+        return false;
+      }
+    }
+
+    function addCesiumPolygon(surface) {
+      const color = Cesium.Color.fromCssColorString(surface.color).withAlpha(surface.fillOpacity ?? 0.22);
+      const outline = Cesium.Color.fromCssColorString(surface.color).withAlpha(0.95);
+      cesiumViewer.entities.add({
+        name: surface.name,
+        polygon: {
+          hierarchy: Cesium.Cartesian3.fromDegreesArrayHeights(toDegreesHeights(surface.vertices)),
+          perPositionHeight: true,
+          material: color,
+          outline: true,
+          outlineColor: outline
+        },
+        description: `<strong>${surface.name}</strong><br>Cabeceira/ref.: ${surface.ref}<br>Regra: ${surface.rule}<br>Altitude KML: absolute`
+      });
+    }
+
+    function addCesiumPolyline(name, vertices, color, width) {
+      cesiumViewer.entities.add({
+        name,
+        polyline: {
+          positions: Cesium.Cartesian3.fromDegreesArrayHeights(toDegreesHeights(vertices)),
+          width,
+          material: Cesium.Color.fromCssColorString(color)
+        }
+      });
+    }
+
+    function toDegreesHeights(vertices) {
+      return vertices.flatMap(v => [v[1], v[0], v[2]]);
+    }
+
+    function setViewMode(mode) {
+      const mapEl = document.getElementById("map");
+      const cesiumEl = document.getElementById("cesiumContainer");
+      const twoBtn = document.getElementById("view2dBtn");
+      const threeBtn = document.getElementById("view3dBtn");
+
+      if (mode === "3d") {
+        cesiumEl.style.display = "block";
+        mapEl.style.display = "none";
+        twoBtn.classList.remove("active");
+        threeBtn.classList.add("active");
+        if (initCesium3d() && cesiumViewer) {
+          cesiumViewer.resize();
+        }
+      } else {
+        cesiumEl.style.display = "none";
+        mapEl.style.display = "block";
+        threeBtn.classList.remove("active");
+        twoBtn.classList.add("active");
+        setTimeout(() => map.invalidateSize(), 50);
+      }
+    }
+
+    function showMapError(message) {
+      const errorEl = document.getElementById("mapError");
+      errorEl.textContent = message;
+      errorEl.style.display = "flex";
+    }
+
+    document.getElementById("view2dBtn").addEventListener("click", () => setViewMode("2d"));
+    document.getElementById("view3dBtn").addEventListener("click", () => setViewMode("3d"));
+
+    document.getElementById("resultsBody").innerHTML = results.map(r => `
+      <tr>
+        <td>${r.surface}</td>
+        <td>${r.limit}</td>
+        <td style="color:${r.infringed ? "var(--red)" : "var(--green)"};font-weight:700">${r.penetration}</td>
+      </tr>
+    `).join("");
+
+    const vertexRows = [];
+    for (const surface of surfaces) {
+      surface.vertices.forEach((v, idx) => {
+        vertexRows.push({ surface: surface.name, vertex: idx + 1, lat: v[0], lon: v[1], alt: v[2] });
+      });
+    }
+    horizontalInternal.slice(0, 12).forEach((v, idx) => {
+      vertexRows.push({ surface: "Horizontal interna / OES", vertex: idx + 1, lat: v[0], lon: v[1], alt: "805 / 850" });
+    });
+
+    document.getElementById("verticesBody").innerHTML = vertexRows.map(r => `
+      <tr>
+        <td>${r.surface}</td>
+        <td>${r.vertex}</td>
+        <td>${Number(r.lat).toFixed(6)}</td>
+        <td>${Number(r.lon).toFixed(6)}</td>
+        <td>${r.alt}</td>
+      </tr>
+    `).join("");
+
+    function surfacePopup(surface) {
+      const rows = surface.vertices.map((v, idx) => `V${idx + 1}: ${v[0].toFixed(6)}, ${v[1].toFixed(6)}, ${v[2]} m`).join("<br>");
+      return `<strong>${surface.name}</strong><br>Cabeceira/ref.: ${surface.ref}<br>Regra: ${surface.rule}<br><br>${rows}`;
+    }
+  </script>
+</body>
+</html>
