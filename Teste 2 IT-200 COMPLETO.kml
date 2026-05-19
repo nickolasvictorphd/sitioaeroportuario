@@ -1,0 +1,483 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Pista</name>
+    <description>
+      Origem WGS-84  : lat=-17.051, lon=-51.085
+      Projecao UTM   : EPSG:32722 (zona 22S)
+      Azimute geo    : 30.0 graus (norte verdadeiro)
+      altitudeMode   : clampToGround
+    </description>
+
+    <Placemark>
+      <name>eixo_pista</name>
+      <Style>
+        <LineStyle>
+          <color>a0ff4a00</color>
+          <width>2</width>
+        </LineStyle>
+      </Style>
+      <LineString>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-51.09063861,-17.06039403,0 -51.07936195,-17.04160580,0</coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>centro_pista</name>
+      <Style>
+        <IconStyle>
+          <color>ffffffff</color>
+          <scale>0.9</scale>
+          <Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png</href></Icon>
+        </IconStyle>
+        <LabelStyle><scale>0.8</scale></LabelStyle>
+      </Style>
+      
+      <ExtendedData>
+        <Data name="nome"><value>centro_pista</value></Data>
+        <Data name="local_x_m"><value>0</value></Data>
+        <Data name="local_y_m"><value>0</value></Data>
+        <Data name="local_z_m"><value>0</value></Data>
+        <Data name="utm_easting_m"><value>490954.773</value></Data>
+        <Data name="utm_northing_m"><value>8114801.108</value></Data>
+        <Data name="lat_wgs84"><value>-17.05100000</value></Data>
+        <Data name="lon_wgs84"><value>-51.08500000</value></Data>
+      </ExtendedData>
+      <Point>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-51.08500000,-17.05100000,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>rwy_end_1</name>
+      <Style>
+        <IconStyle>
+          <color>ff6b6bff</color>
+          <scale>0.9</scale>
+          <Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png</href></Icon>
+        </IconStyle>
+        <LabelStyle><scale>0.8</scale></LabelStyle>
+      </Style>
+      
+      <ExtendedData>
+        <Data name="nome"><value>rwy_end_1</value></Data>
+        <Data name="local_x_m"><value>-1200.0</value></Data>
+        <Data name="local_y_m"><value>0.0</value></Data>
+        <Data name="local_z_m"><value>0.0</value></Data>
+        <Data name="utm_easting_m"><value>490355.225</value></Data>
+        <Data name="utm_northing_m"><value>8113761.617</value></Data>
+        <Data name="lat_wgs84"><value>-17.06039403</value></Data>
+        <Data name="lon_wgs84"><value>-51.09063861</value></Data>
+      </ExtendedData>
+      <Point>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-51.09063861,-17.06039403,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>rwy_end_2</name>
+      <Style>
+        <IconStyle>
+          <color>ff4fcf51</color>
+          <scale>0.9</scale>
+          <Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png</href></Icon>
+        </IconStyle>
+        <LabelStyle><scale>0.8</scale></LabelStyle>
+      </Style>
+      
+      <ExtendedData>
+        <Data name="nome"><value>rwy_end_2</value></Data>
+        <Data name="local_x_m"><value>1200.0</value></Data>
+        <Data name="local_y_m"><value>0.0</value></Data>
+        <Data name="local_z_m"><value>0.0</value></Data>
+        <Data name="utm_easting_m"><value>491554.321</value></Data>
+        <Data name="utm_northing_m"><value>8115840.599</value></Data>
+        <Data name="lat_wgs84"><value>-17.04160580</value></Data>
+        <Data name="lon_wgs84"><value>-51.07936195</value></Data>
+      </ExtendedData>
+      <Point>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-51.07936195,-17.04160580,0</coordinates>
+      </Point>
+    </Placemark>
+
+    <!-- Runway pavement polygon (2 400 m x 45 m, rotated 030Â°) -->
+    <Placemark>
+      <name>pista_asfalto_03-21</name>
+      <Style>
+        <PolyStyle><color>ff777777</color></PolyStyle>
+        <LineStyle><color>ff000000</color><width>1</width></LineStyle>
+      </Style>
+      <Polygon>
+        <altitudeMode>clampToGround</altitudeMode>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>
+              -51.07936195,-17.04160580,0
+              -51.07918110,-17.04171210,0
+              -51.09063861,-17.06039403,0
+              -51.09081890,-17.06047280,0
+              -51.07936195,-17.04160580,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+
+    <!-- Displaced threshold marking for RWY 03 (300 m displacement from physical end toward runway center) -->
+    <Placemark>
+      <name>cabeceira_deslocada_03</name>
+      <Style>
+        <LineStyle><color>ff00ffff</color><width>4</width></LineStyle>
+      </Style>
+      <LineString>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>
+          <!-- short transverse marking across runway at displaced threshold -->
+          -51.08357900,-17.04812200,0 -51.08323900,-17.04782900,0
+        </coordinates>
+      </LineString>
+      <ExtendedData>
+        <Data name="descricao"><value>Displaced threshold RWY 03 (300 m)</value></Data>
+      </ExtendedData>
+    </Placemark>
+
+    <!-- Silo obstacle placemark (alert icon) -->
+    <Placemark>
+      <name>silo_graos_38m</name>
+      <Style>
+        <IconStyle>
+          <color>ff0000ff</color>
+          <scale>1.2</scale>
+          <Icon><href>http://maps.google.com/mapfiles/kml/pushpin/red-pushpin.png</href></Icon>
+        </IconStyle>
+      </Style>
+      <ExtendedData>
+        <Data name="nome"><value>Silo de GrÃ£os</value></Data>
+        <Data name="altura_m"><value>38</value></Data>
+        <Data name="obs"><value>Obstacle to be assessed against OFS</value></Data>
+        <Data name="lat_wgs84"><value>-17.069903</value></Data>
+        <Data name="lon_wgs84"><value>-51.098031</value></Data>
+      </ExtendedData>
+      <Point>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-51.098031,-17.069903,0</coordinates>
+      </Point>
+    </Placemark>
+
+
+    <Folder>
+      <name>OLS_OES_calculadas</name>
+      <description>Superficies calculadas para pista instrumento nao-precisao codigo 4. Coordenadas em WGS-84, derivadas do referencial UTM 22S local da pista.</description>
+
+      <Style id="st_strip"><PolyStyle><color>3314f0ff</color></PolyStyle><LineStyle><color>ff14f0ff</color><width>2</width></LineStyle></Style>
+      <Style id="st_approach"><PolyStyle><color>550000ff</color></PolyStyle><LineStyle><color>ff0000ff</color><width>2</width></LineStyle></Style>
+      <Style id="st_takeoff"><PolyStyle><color>5500ff00</color></PolyStyle><LineStyle><color>ff00aa00</color><width>2</width></LineStyle></Style>
+      <Style id="st_horizontal"><LineStyle><color>ffff00ff</color><width>3</width></LineStyle></Style>
+      <Style id="st_declared"><PolyStyle><color>4422aaff</color></PolyStyle><LineStyle><color>ff22aaff</color><width>2</width></LineStyle></Style>
+
+      <Placemark>
+        <name>faixa_pista_instrumento_codigo4_140m</name>
+        <styleUrl>#st_strip</styleUrl>
+        <ExtendedData><Data name="comprimento_total_m"><value>2520</value></Data><Data name="meia_largura_m"><value>140</value></Data><Data name="resultado_silo"><value>Fora da faixa: afastamento lateral 155.2 m</value></Data></ExtendedData>
+        <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.08977232,-17.06149666,0 -51.07795024,-17.04176769,0 -51.08022768,-17.04050334,0 -51.09204976,-17.06023231,0 -51.08977232,-17.06149666,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>
+
+      <Placemark>
+        <name>aproximacao_RWY03_nao_precisao_codigo4</name>
+        <styleUrl>#st_approach</styleUrl>
+        <ExtendedData><Data name="borda_interna_m"><value>300</value></Data><Data name="inicio"><value>60 m antes da cabeceira 03 deslocada</value></Data><Data name="divergencia_por_lado"><value>15%</value></Data><Data name="comprimento_primeira_secao_m"><value>3000</value></Data><Data name="declividade"><value>2%</value></Data><Data name="resultado_silo"><value>Infringida; limite no silo 790.9 m MSL; topo 851.0 m MSL; penetracao 60.1 m</value></Data></ExtendedData>
+        <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.08828359,-17.05919312,0 -51.09072371,-17.05783847,0 -51.10845779,-17.07929336,0 -51.09869731,-17.08471197,0 -51.08828359,-17.05919312,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>
+
+      <Placemark>
+        <name>aproximacao_RWY21_nao_precisao_codigo4</name>
+        <styleUrl>#st_approach</styleUrl>
+        <ExtendedData><Data name="borda_interna_m"><value>300</value></Data><Data name="inicio"><value>60 m antes da cabeceira 21</value></Data><Data name="divergencia_por_lado"><value>15%</value></Data><Data name="comprimento_primeira_secao_m"><value>3000</value></Data><Data name="declividade"><value>2%</value></Data><Data name="resultado_silo"><value>Fora da aproximacao RWY21</value></Data></ExtendedData>
+        <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.07786890,-17.04181284,0 -51.08030902,-17.04045819,0 -51.06989530,-17.01493934,0 -51.06013482,-17.02035795,0 -51.07786890,-17.04181284,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>
+
+      <Placemark>
+        <name>subida_decolagem_RWY21_TODA2600</name>
+        <styleUrl>#st_takeoff</styleUrl>
+        <ExtendedData><Data name="borda_interna_m"><value>180</value></Data><Data name="inicio"><value>Fim da clearway de 200 m alem da CAB 03</value></Data><Data name="divergencia_por_lado"><value>12.5%</value></Data><Data name="largura_final_m"><value>1800</value></Data><Data name="comprimento_m"><value>15000</value></Data><Data name="declividade"><value>2%</value></Data><Data name="resultado_silo"><value>Infringida; silo a 1104.3 m da borda interna, limite 782.1 m MSL, topo 851.0 m MSL, penetracao 68.9 m</value></Data></ExtendedData>
+        <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.09083578,-17.06236693,0 -51.09229986,-17.06155414,0 -51.12928780,-17.10862821,0 -51.16925768,-17.17533092,0 -51.15461696,-17.18345884,0 -51.11464708,-17.11675614,0 -51.09083578,-17.06236693,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>
+
+      <Placemark>
+        <name>subida_decolagem_RWY03_TORA2400</name>
+        <styleUrl>#st_takeoff</styleUrl>
+        <ExtendedData><Data name="borda_interna_m"><value>180</value></Data><Data name="inicio"><value>60 m alem da CAB 21</value></Data><Data name="divergencia_por_lado"><value>12.5%</value></Data><Data name="largura_final_m"><value>1800</value></Data><Data name="comprimento_m"><value>15000</value></Data><Data name="declividade"><value>2%</value></Data><Data name="resultado_silo"><value>Fora; silo esta no lado oposto da decolagem RWY03</value></Data></ExtendedData>
+        <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.07835693,-17.04154191,0 -51.07982100,-17.04072912,0 -51.05600970,-16.98633992,0 -51.01603982,-16.91963721,0 -51.00139910,-16.92776513,0 -51.04136898,-16.99446784,0 -51.07835693,-17.04154191,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>
+
+      <Placemark>
+        <name>clearway_RWY21_200m_TODA2600</name>
+        <styleUrl>#st_declared</styleUrl>
+        <ExtendedData><Data name="TODA_RWY21_m"><value>2600</value></Data><Data name="TORA_RWY21_m"><value>2400</value></Data><Data name="clearway_m"><value>200</value></Data></ExtendedData>
+        <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.09001953,-17.06073341,0 -51.09095779,-17.06229920,0 -51.09217785,-17.06162188,0 -51.09123959,-17.06005608,0 -51.09001953,-17.06073341,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>
+
+      <Placemark>
+        <name>horizontal_interna_raio4000m_limite805MSL</name>
+        <styleUrl>#st_horizontal</styleUrl>
+        <ExtendedData><Data name="raio_m"><value>4000</value></Data><Data name="elevacao_limite_msl"><value>805</value></Data><Data name="resultado_silo"><value>Infringida; topo 851.0 m MSL; penetracao 46.0 m</value></Data></ExtendedData>
+        <LineString><tessellate>1</tessellate><altitudeMode>clampToGround</altitudeMode><coordinates>-51.06623480,-17.01968417,0 -51.06914181,-17.01822913,0 -51.07216952,-17.01702349,0 -51.07529487,-17.01607643,0 -51.07849408,-17.01539516,0 -51.08174281,-17.01498487,0 -51.08501633,-17.01484867,0 -51.08828972,-17.01498761,0 -51.09153808,-17.01540062,0 -51.09473667,-17.01608457,0 -51.09786117,-17.01703424,0 -51.10088778,-17.01824241,0 -51.10379348,-17.01969989,0 -51.10655615,-17.02139558,0 -51.10915476,-17.02331658,0 -51.11156954,-17.02544827,0 -51.11378212,-17.02777442,0 -51.11577564,-17.03027733,0 -51.11753494,-17.03293795,0 -51.11904663,-17.03573603,0 -51.12029920,-17.03865029,0 -51.12128313,-17.04165853,0 -51.12199092,-17.04473787,0 -51.12241718,-17.04786486,0 -51.12255868,-17.05101572,0 -51.12241434,-17.05416645,0 -51.12198525,-17.05729309,0 -51.12127467,-17.06037183,0 -51.12028803,-17.06337925,0 -51.11903283,-17.06629245,0 -51.11751861,-17.06908927,0 -51.11575691,-17.07174842,0 -51.11376112,-17.07424966,0 -51.11154645,-17.07657396,0 -51.10912975,-17.07870363,0 -51.10652940,-17.08062245,0 -51.10376520,-17.08231583,0 -51.10085819,-17.08377087,0 -51.09783048,-17.08497651,0 -51.09470513,-17.08592357,0 -51.09150592,-17.08660484,0 -51.08825719,-17.08701513,0 -51.08498367,-17.08715133,0 -51.08171028,-17.08701239,0 -51.07846192,-17.08659938,0 -51.07526333,-17.08591543,0 -51.07213883,-17.08496576,0 -51.06911222,-17.08375759,0 -51.06620652,-17.08230011,0 -51.06344385,-17.08060442,0 -51.06084524,-17.07868342,0 -51.05843046,-17.07655173,0 -51.05621788,-17.07422558,0 -51.05422436,-17.07172267,0 -51.05246506,-17.06906205,0 -51.05095337,-17.06626397,0 -51.04970080,-17.06334971,0 -51.04871687,-17.06034147,0 -51.04800908,-17.05726213,0 -51.04758282,-17.05413514,0 -51.04744132,-17.05098428,0 -51.04758566,-17.04783355,0 -51.04801475,-17.04470691,0 -51.04872533,-17.04162817,0 -51.04971197,-17.03862075,0 -51.05096717,-17.03570755,0 -51.05248139,-17.03291073,0 -51.05424309,-17.03025158,0 -51.05623888,-17.02775034,0 -51.05845355,-17.02542604,0 -51.06087025,-17.02329637,0 -51.06347060,-17.02137755,0 -51.06623480,-17.01968417,0</coordinates></LineString>
+      </Placemark>
+
+      <Placemark>
+        <name>resultado_silo_posicao_relativa</name>
+        <Style><IconStyle><color>ff0000ff</color><scale>1.4</scale><Icon><href>http://maps.google.com/mapfiles/kml/paddle/red-stars.png</href></Icon></IconStyle></Style>
+        <ExtendedData><Data name="lat_wgs84"><value>-17.069903</value></Data><Data name="lon_wgs84"><value>-51.098031</value></Data><Data name="utm_easting_m"><value>489569.135</value></Data><Data name="utm_northing_m"><value>8112709.300</value></Data><Data name="longitudinal_centro_m"><value>-2504.3</value></Data><Data name="transversal_eixo_m"><value>155.2</value></Data><Data name="distancia_cab03_fisica_m"><value>1313.5</value></Data><Data name="distancia_cab21_fisica_m"><value>3707.6</value></Data><Data name="terreno_msl_m"><value>813</value></Data><Data name="topo_msl_m"><value>851</value></Data><Data name="infringimentos"><value>Aproximacao RWY03: 60.1 m; horizontal interna: 46.0 m</value></Data></ExtendedData>
+        <Point><altitudeMode>clampToGround</altitudeMode><coordinates>-51.09803100,-17.06990300,0</coordinates></Point>
+      </Placemark>
+    </Folder>
+
+    <Folder>
+      <name>OLS_OES_3D_absolute</name>
+      <description>Poligonos 3D com altitudeMode absolute. Referencia vertical: elevacao da pista/aerodromo 760 m MSL, salvo indicacao especifica.</description>
+      <Style id="st3d_approach"><PolyStyle><color>660000ff</color></PolyStyle><LineStyle><color>ff0000ff</color><width>2</width></LineStyle></Style>
+      <Style id="st3d_takeoff"><PolyStyle><color>6600ff00</color></PolyStyle><LineStyle><color>ff00aa00</color><width>2</width></LineStyle></Style>
+      <Style id="st3d_const"><PolyStyle><color>44ff00ff</color></PolyStyle><LineStyle><color>ffff00ff</color><width>2</width></LineStyle></Style>
+      <Style id="st3d_transition"><PolyStyle><color>6614f0ff</color></PolyStyle><LineStyle><color>ff14f0ff</color><width>2</width></LineStyle></Style>
+      <Style id="st3d_conical"><PolyStyle><color>3333aaff</color></PolyStyle><LineStyle><color>ff33aaff</color><width>1</width></LineStyle></Style>
+      <Style id="st3d_strip"><PolyStyle><color>662457a6</color></PolyStyle><LineStyle><color>ff2457a6</color><width>2</width></LineStyle></Style>
+      <Style id="st3d_silo"><LineStyle><color>ff0000ff</color><width>5</width></LineStyle><IconStyle><color>ff0000ff</color><scale>1.3</scale></IconStyle></Style>
+      <Placemark>
+        <name>OLS_faixa_pista_codigo4_3D</name>
+        <styleUrl>#st3d_strip</styleUrl>
+        <description><![CDATA[Faixa de pista para pista por instrumento codigo 4. Representacao horizontal em altitude absoluta: 760 m MSL. Extensao longitudinal: 60 m alem das cabeceiras. Meia-largura: 140 m. O silo esta fora da faixa: afastamento lateral 155.2 m.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.08977232,-17.06149666,760.0 -51.07795024,-17.04176769,760.0 -51.08022768,-17.04050334,760.0 -51.09204976,-17.06023231,760.0 -51.08977232,-17.06149666,760.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>
+      <Placemark>
+        <name>OLS_aproximacao_RWY03_3D</name>
+        <styleUrl>#st3d_approach</styleUrl>
+        <description><![CDATA[Superficie de aproximacao nao-precisao codigo 4. Borda interna 300 m, inicio 60 m antes da cabeceira 03 deslocada, divergencia 15% por lado, declividade 2%. Vertices externos a 3000 m: 760 + 3000 x 0.02 = 820 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.08828359,-17.05919312,760.0 -51.09072371,-17.05783847,760.0 -51.10845779,-17.07929336,820.0 -51.09869731,-17.08471197,820.0 -51.08828359,-17.05919312,760.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_aproximacao_RWY21_3D</name>
+        <styleUrl>#st3d_approach</styleUrl>
+        <description><![CDATA[Superficie de aproximacao nao-precisao codigo 4. Borda interna 300 m, inicio 60 m antes da cabeceira 21, divergencia 15% por lado, declividade 2%. Vertices externos a 3000 m: 820 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.07786890,-17.04181284,760.0 -51.08030902,-17.04045819,760.0 -51.06989530,-17.01493934,820.0 -51.06013482,-17.02035795,820.0 -51.07786890,-17.04181284,760.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_subida_decolagem_RWY03_3D</name>
+        <styleUrl>#st3d_takeoff</styleUrl>
+        <description><![CDATA[Superficie de subida de decolagem codigo 4. Borda interna 180 m a 60 m apos a CAB 21; divergencia 12.5% por lado ate largura final 1800 m; comprimento 15000 m; declividade 2%. Altitudes: 760 m, 889.6 m em 6480 m, 1060 m em 15000 m.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.07835693,-17.04154191,760.0 -51.07982100,-17.04072912,760.0 -51.05600970,-16.98633992,889.6 -51.01603982,-16.91963721,1060.0 -51.00139910,-16.92776513,1060.0 -51.04136898,-16.99446784,889.6 -51.07835693,-17.04154191,760.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_subida_decolagem_RWY21_3D_TODA2600</name>
+        <styleUrl>#st3d_takeoff</styleUrl>
+        <description><![CDATA[Superficie de subida de decolagem codigo 4. Borda interna 180 m no fim da clearway de 200 m alem da CAB 03, coerente com TODA 21 = 2600 m; divergencia 12.5% por lado; declividade 2%.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.09083578,-17.06236693,760.0 -51.09229986,-17.06155414,760.0 -51.12928780,-17.10862821,889.6 -51.16925768,-17.17533092,1060.0 -51.15461696,-17.18345884,1060.0 -51.11464708,-17.11675614,889.6 -51.09083578,-17.06236693,760.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_transicao_lateral_esquerda_faixa_3D</name>
+        <styleUrl>#st3d_transition</styleUrl>
+        <description><![CDATA[Superficie de transicao a partir da borda da faixa de pista. Declividade 1:7 (14.3%). Da elevacao 760 m MSL ate a horizontal interna 805 m MSL: deslocamento lateral 45 x 7 = 315 m, de 140 m ate 455 m do eixo.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.09204976,-17.06023231,760.0 -51.08022768,-17.04050334,760.0 -51.08278981,-17.03908096,805.0 -51.09461189,-17.05880993,805.0 -51.09204976,-17.06023231,760.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_transicao_lateral_direita_faixa_3D</name>
+        <styleUrl>#st3d_transition</styleUrl>
+        <description><![CDATA[Superficie de transicao a partir da borda da faixa de pista. Declividade 1:7 (14.3%). Da elevacao 760 m MSL ate a horizontal interna 805 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.08977232,-17.06149666,760.0 -51.07795024,-17.04176769,760.0 -51.07538811,-17.04319007,805.0 -51.08721019,-17.06291904,805.0 -51.08977232,-17.06149666,760.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_horizontal_interna_805MSL_3D</name>
+        <styleUrl>#st3d_const</styleUrl>
+        <description><![CDATA[Superficie horizontal interna. Elevacao de referencia 760 m MSL + 45 m = 805 m MSL. Raio representado: 4000 m a partir do centro/ARP adotado.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.06623480,-17.01968417,805.0 -51.06914181,-17.01822913,805.0 -51.07216952,-17.01702349,805.0 -51.07529487,-17.01607643,805.0 -51.07849408,-17.01539516,805.0 -51.08174281,-17.01498487,805.0 -51.08501633,-17.01484867,805.0 -51.08828972,-17.01498761,805.0 -51.09153808,-17.01540062,805.0 -51.09473667,-17.01608457,805.0 -51.09786117,-17.01703424,805.0 -51.10088778,-17.01824241,805.0 -51.10379348,-17.01969989,805.0 -51.10655615,-17.02139558,805.0 -51.10915476,-17.02331658,805.0 -51.11156954,-17.02544827,805.0 -51.11378212,-17.02777442,805.0 -51.11577564,-17.03027733,805.0 -51.11753494,-17.03293795,805.0 -51.11904663,-17.03573603,805.0 -51.12029920,-17.03865029,805.0 -51.12128313,-17.04165853,805.0 -51.12199092,-17.04473787,805.0 -51.12241718,-17.04786486,805.0 -51.12255868,-17.05101572,805.0 -51.12241434,-17.05416645,805.0 -51.12198525,-17.05729309,805.0 -51.12127467,-17.06037183,805.0 -51.12028803,-17.06337925,805.0 -51.11903283,-17.06629245,805.0 -51.11751861,-17.06908927,805.0 -51.11575691,-17.07174842,805.0 -51.11376112,-17.07424966,805.0 -51.11154645,-17.07657396,805.0 -51.10912975,-17.07870363,805.0 -51.10652940,-17.08062245,805.0 -51.10376520,-17.08231583,805.0 -51.10085819,-17.08377087,805.0 -51.09783048,-17.08497651,805.0 -51.09470513,-17.08592357,805.0 -51.09150592,-17.08660484,805.0 -51.08825719,-17.08701513,805.0 -51.08498367,-17.08715133,805.0 -51.08171028,-17.08701239,805.0 -51.07846192,-17.08659938,805.0 -51.07526333,-17.08591543,805.0 -51.07213883,-17.08496576,805.0 -51.06911222,-17.08375759,805.0 -51.06620652,-17.08230011,805.0 -51.06344385,-17.08060442,805.0 -51.06084524,-17.07868342,805.0 -51.05843046,-17.07655173,805.0 -51.05621788,-17.07422558,805.0 -51.05422436,-17.07172267,805.0 -51.05246506,-17.06906205,805.0 -51.05095337,-17.06626397,805.0 -51.04970080,-17.06334971,805.0 -51.04871687,-17.06034147,805.0 -51.04800908,-17.05726213,805.0 -51.04758282,-17.05413514,805.0 -51.04744132,-17.05098428,805.0 -51.04758566,-17.04783355,805.0 -51.04801475,-17.04470691,805.0 -51.04872533,-17.04162817,805.0 -51.04971197,-17.03862075,805.0 -51.05096717,-17.03570755,805.0 -51.05248139,-17.03291073,805.0 -51.05424309,-17.03025158,805.0 -51.05623888,-17.02775034,805.0 -51.05845355,-17.02542604,805.0 -51.06087025,-17.02329637,805.0 -51.06347060,-17.02137755,805.0 -51.06623480,-17.01968417,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OES_horizontal_90m_850MSL_3D</name>
+        <styleUrl>#st3d_const</styleUrl>
+        <description><![CDATA[OES horizontal solicitada. Elevacao de referencia: 760 m MSL. Altura normativa: 90 m. Altitude da superficie: 850 m MSL. Topo do silo: 851 m MSL. Penetracao: 1 m.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.06623480,-17.01968417,850.0 -51.06914181,-17.01822913,850.0 -51.07216952,-17.01702349,850.0 -51.07529487,-17.01607643,850.0 -51.07849408,-17.01539516,850.0 -51.08174281,-17.01498487,850.0 -51.08501633,-17.01484867,850.0 -51.08828972,-17.01498761,850.0 -51.09153808,-17.01540062,850.0 -51.09473667,-17.01608457,850.0 -51.09786117,-17.01703424,850.0 -51.10088778,-17.01824241,850.0 -51.10379348,-17.01969989,850.0 -51.10655615,-17.02139558,850.0 -51.10915476,-17.02331658,850.0 -51.11156954,-17.02544827,850.0 -51.11378212,-17.02777442,850.0 -51.11577564,-17.03027733,850.0 -51.11753494,-17.03293795,850.0 -51.11904663,-17.03573603,850.0 -51.12029920,-17.03865029,850.0 -51.12128313,-17.04165853,850.0 -51.12199092,-17.04473787,850.0 -51.12241718,-17.04786486,850.0 -51.12255868,-17.05101572,850.0 -51.12241434,-17.05416645,850.0 -51.12198525,-17.05729309,850.0 -51.12127467,-17.06037183,850.0 -51.12028803,-17.06337925,850.0 -51.11903283,-17.06629245,850.0 -51.11751861,-17.06908927,850.0 -51.11575691,-17.07174842,850.0 -51.11376112,-17.07424966,850.0 -51.11154645,-17.07657396,850.0 -51.10912975,-17.07870363,850.0 -51.10652940,-17.08062245,850.0 -51.10376520,-17.08231583,850.0 -51.10085819,-17.08377087,850.0 -51.09783048,-17.08497651,850.0 -51.09470513,-17.08592357,850.0 -51.09150592,-17.08660484,850.0 -51.08825719,-17.08701513,850.0 -51.08498367,-17.08715133,850.0 -51.08171028,-17.08701239,850.0 -51.07846192,-17.08659938,850.0 -51.07526333,-17.08591543,850.0 -51.07213883,-17.08496576,850.0 -51.06911222,-17.08375759,850.0 -51.06620652,-17.08230011,850.0 -51.06344385,-17.08060442,850.0 -51.06084524,-17.07868342,850.0 -51.05843046,-17.07655173,850.0 -51.05621788,-17.07422558,850.0 -51.05422436,-17.07172267,850.0 -51.05246506,-17.06906205,850.0 -51.05095337,-17.06626397,850.0 -51.04970080,-17.06334971,850.0 -51.04871687,-17.06034147,850.0 -51.04800908,-17.05726213,850.0 -51.04758282,-17.05413514,850.0 -51.04744132,-17.05098428,850.0 -51.04758566,-17.04783355,850.0 -51.04801475,-17.04470691,850.0 -51.04872533,-17.04162817,850.0 -51.04971197,-17.03862075,850.0 -51.05096717,-17.03570755,850.0 -51.05248139,-17.03291073,850.0 -51.05424309,-17.03025158,850.0 -51.05623888,-17.02775034,850.0 -51.05845355,-17.02542604,850.0 -51.06087025,-17.02329637,850.0 -51.06347060,-17.02137755,850.0 -51.06623480,-17.01968417,850.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_01</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.06623480,-17.01968417,805.0 -51.07216952,-17.01702349,805.0 -51.06575428,-17.00003524,905.0 -51.05685220,-17.00402626,905.0 -51.06623480,-17.01968417,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_02</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.07216952,-17.01702349,805.0 -51.07849408,-17.01539516,805.0 -51.07524113,-16.99759275,905.0 -51.06575428,-17.00003524,905.0 -51.07216952,-17.01702349,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_03</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.07849408,-17.01539516,805.0 -51.08501633,-17.01484867,805.0 -51.08502449,-16.99677301,905.0 -51.07524113,-16.99759275,905.0 -51.07849408,-17.01539516,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_04</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.08501633,-17.01484867,805.0 -51.09153808,-17.01540062,805.0 -51.09480712,-16.99760093,905.0 -51.08502449,-16.99677301,905.0 -51.08501633,-17.01484867,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_05</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.09153808,-17.01540062,805.0 -51.09786117,-17.01703424,805.0 -51.10429175,-17.00005136,905.0 -51.09480712,-16.99760093,905.0 -51.09153808,-17.01540062,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_06</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.09786117,-17.01703424,805.0 -51.10379348,-17.01969989,805.0 -51.11319022,-17.00404984,905.0 -51.10429175,-17.00005136,905.0 -51.09786117,-17.01703424,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_07</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.10379348,-17.01969989,805.0 -51.10915476,-17.02331658,805.0 -51.12123215,-17.00947487,905.0 -51.11319022,-17.00404984,905.0 -51.10379348,-17.01969989,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_08</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.10915476,-17.02331658,805.0 -51.11378212,-17.02777442,805.0 -51.12817317,-17.01616162,905.0 -51.12123215,-17.00947487,905.0 -51.10915476,-17.02331658,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_09</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.11378212,-17.02777442,805.0 -51.11753494,-17.03293795,805.0 -51.13380241,-17.02390692,905.0 -51.12817317,-17.01616162,905.0 -51.11378212,-17.02777442,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_10</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.11753494,-17.03293795,805.0 -51.12029920,-17.03865029,805.0 -51.13794880,-17.03247543,905.0 -51.13380241,-17.02390692,905.0 -51.11753494,-17.03293795,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_11</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.12029920,-17.03865029,805.0 -51.12199092,-17.04473787,805.0 -51.14048637,-17.04160680,905.0 -51.13794880,-17.03247543,905.0 -51.12029920,-17.03865029,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_12</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.12199092,-17.04473787,805.0 -51.12255868,-17.05101572,805.0 -51.14133802,-17.05102358,905.0 -51.14048637,-17.04160680,905.0 -51.12199092,-17.04473787,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_13</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.12255868,-17.05101572,805.0 -51.12198525,-17.05729309,805.0 -51.14047787,-17.06043963,905.0 -51.14133802,-17.05102358,905.0 -51.12255868,-17.05101572,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_14</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.12198525,-17.05729309,805.0 -51.12028803,-17.06337925,805.0 -51.13793205,-17.06956888,905.0 -51.14047787,-17.06043963,905.0 -51.12198525,-17.05729309,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_15</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.12028803,-17.06337925,805.0 -51.11751861,-17.06908927,805.0 -51.13377791,-17.07813391,905.0 -51.13793205,-17.06956888,905.0 -51.12028803,-17.06337925,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_16</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.11751861,-17.06908927,805.0 -51.11376112,-17.07424966,805.0 -51.12814169,-17.08587450,905.0 -51.13377791,-17.07813391,905.0 -51.11751861,-17.06908927,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_17</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.11376112,-17.07424966,805.0 -51.10912975,-17.07870363,805.0 -51.12119462,-17.09255544,905.0 -51.12814169,-17.08587450,905.0 -51.11376112,-17.07424966,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_18</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.10912975,-17.07870363,805.0 -51.10376520,-17.08231583,805.0 -51.11314780,-17.09797374,905.0 -51.12119462,-17.09255544,905.0 -51.10912975,-17.07870363,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_19</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.10376520,-17.08231583,805.0 -51.09783048,-17.08497651,805.0 -51.10424572,-17.10196476,905.0 -51.11314780,-17.09797374,905.0 -51.10376520,-17.08231583,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_20</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.09783048,-17.08497651,805.0 -51.09150592,-17.08660484,805.0 -51.09475887,-17.10440725,905.0 -51.10424572,-17.10196476,905.0 -51.09783048,-17.08497651,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_21</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.09150592,-17.08660484,805.0 -51.08498367,-17.08715133,805.0 -51.08497551,-17.10522699,905.0 -51.09475887,-17.10440725,905.0 -51.09150592,-17.08660484,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_22</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.08498367,-17.08715133,805.0 -51.07846192,-17.08659938,805.0 -51.07519288,-17.10439907,905.0 -51.08497551,-17.10522699,905.0 -51.08498367,-17.08715133,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_23</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.07846192,-17.08659938,805.0 -51.07213883,-17.08496576,805.0 -51.06570825,-17.10194864,905.0 -51.07519288,-17.10439907,905.0 -51.07846192,-17.08659938,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_24</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.07213883,-17.08496576,805.0 -51.06620652,-17.08230011,805.0 -51.05680978,-17.09795016,905.0 -51.06570825,-17.10194864,905.0 -51.07213883,-17.08496576,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_25</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.06620652,-17.08230011,805.0 -51.06084524,-17.07868342,805.0 -51.04876785,-17.09252513,905.0 -51.05680978,-17.09795016,905.0 -51.06620652,-17.08230011,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_26</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.06084524,-17.07868342,805.0 -51.05621788,-17.07422558,805.0 -51.04182683,-17.08583838,905.0 -51.04876785,-17.09252513,905.0 -51.06084524,-17.07868342,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_27</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.05621788,-17.07422558,805.0 -51.05246506,-17.06906205,805.0 -51.03619759,-17.07809308,905.0 -51.04182683,-17.08583838,905.0 -51.05621788,-17.07422558,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_28</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.05246506,-17.06906205,805.0 -51.04970080,-17.06334971,805.0 -51.03205120,-17.06952457,905.0 -51.03619759,-17.07809308,905.0 -51.05246506,-17.06906205,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_29</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.04970080,-17.06334971,805.0 -51.04800908,-17.05726213,805.0 -51.02951363,-17.06039320,905.0 -51.03205120,-17.06952457,905.0 -51.04970080,-17.06334971,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_30</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.04800908,-17.05726213,805.0 -51.04744132,-17.05098428,805.0 -51.02866198,-17.05097642,905.0 -51.02951363,-17.06039320,905.0 -51.04800908,-17.05726213,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_31</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.04744132,-17.05098428,805.0 -51.04801475,-17.04470691,805.0 -51.02952213,-17.04156037,905.0 -51.02866198,-17.05097642,905.0 -51.04744132,-17.05098428,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_32</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.04801475,-17.04470691,805.0 -51.04971197,-17.03862075,805.0 -51.03206795,-17.03243112,905.0 -51.02952213,-17.04156037,905.0 -51.04801475,-17.04470691,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_33</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.04971197,-17.03862075,805.0 -51.05248139,-17.03291073,805.0 -51.03622209,-17.02386609,905.0 -51.03206795,-17.03243112,905.0 -51.04971197,-17.03862075,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_34</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.05248139,-17.03291073,805.0 -51.05623888,-17.02775034,805.0 -51.04185831,-17.01612550,905.0 -51.03622209,-17.02386609,905.0 -51.05248139,-17.03291073,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_35</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.05623888,-17.02775034,805.0 -51.06087025,-17.02329637,805.0 -51.04880538,-17.00944456,905.0 -51.04185831,-17.01612550,905.0 -51.05623888,-17.02775034,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>OLS_conica_3D_segmento_36</name>
+        <styleUrl>#st3d_conical</styleUrl>
+        <description><![CDATA[Superficie conica. Inicio na horizontal interna a 805 m MSL, raio 4000 m. Inclina 5% ate altura adicional de 100 m, raio externo 6000 m e altitude 905 m MSL.]]></description>
+        <Polygon><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><outerBoundaryIs><LinearRing><coordinates>-51.06087025,-17.02329637,805.0 -51.06623480,-17.01968417,805.0 -51.05685220,-17.00402626,905.0 -51.04880538,-17.00944456,905.0 -51.06087025,-17.02329637,805.0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+      </Placemark>      <Placemark>
+        <name>silo_graos_linha_vertical_813_851MSL</name>
+        <styleUrl>#st3d_silo</styleUrl>
+        <description><![CDATA[Linha vertical do silo em altitude absoluta: terreno 813 m MSL, topo 851 m MSL.]]></description>
+        <LineString><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><coordinates>-51.09801068,-17.06990542,813.0 -51.09801068,-17.06990542,851.0</coordinates></LineString>
+      </Placemark>
+    </Folder>
+
+  </Document>
+</kml>
+
+
